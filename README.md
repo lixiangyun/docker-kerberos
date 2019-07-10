@@ -6,8 +6,9 @@ It is intended for demonstration / learning on a local host and is not productio
 
 # Run
 ```
-docker run -d -v $PWD/krb5.conf:/etc/kadmin/krb5.conf -v $PWD/krb5kdc:/etc/krb5kdc -p 88:88 linimbus/kerberos-kadmin
-docker run -d -v $PWD/krb5.conf:/etc/kdc/krb5.conf -v $PWD/krb5kdc:/etc/krb5kdc -p 88:88 linimbus/kerberos-kdc
+docker volume create krb5kdc
+docker run -d -v $PWD/krb5.conf:/etc/kadmin/krb5.conf -v krb5kdc:/etc/krb5kdc --net=host linimbus/kerberos-kadmin
+docker run -d -v $PWD/krb5.conf:/etc/kdc/krb5.conf -v krb5kdc:/etc/krb5kdc --net=host linimbus/kerberos-kdc
 ```
 
 # Administer
