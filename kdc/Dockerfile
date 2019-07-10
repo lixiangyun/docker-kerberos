@@ -1,6 +1,7 @@
 FROM debian
-MAINTAINER christopher.hoskin@gmail.com
+MAINTAINER linimbus@126.com
 ARG DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get install -y apt-utils
 RUN apt-get install -y krb5-kdc
 

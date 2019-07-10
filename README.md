@@ -4,15 +4,10 @@ This project is an example MIT Kerberos v5 containerisation.
 
 It is intended for demonstration / learning on a local host and is not production ready. In particular weak passwords are used.
 
-It has the following components:
-
-* compose file: https://github.com/mans0954/docker-kerberos/blob/master/docker-compose.yml
-* Kerberos administration server: https://hub.docker.com/r/mans0954/kerberos-kadmin/
-* Kerberos version 5 Authentication Service and Key Distribution Center https://hub.docker.com/r/mans0954/kerberos-kdc/
-
 # Run
 ```
-docker-compose up
+docker run -d -v $PWD/krb5.conf:/etc/kadmin/krb5.conf -v $PWD/krb5kdc:/etc/krb5kdc -p 88:88 linimbus/kerberos-kadmin
+docker run -d -v $PWD/krb5.conf:/etc/kdc/krb5.conf -v $PWD/krb5kdc:/etc/krb5kdc -p 88:88 linimbus/kerberos-kdc
 ```
 
 # Administer
