@@ -9,19 +9,21 @@ It is intended for demonstration / learning on a local host and is not productio
 docker volume create krb5kdc
 docker volume create database
 
-docker run --name kadmin -p 88:88 -d \
+docker run --name kadmin -p 749:749 -p 464:464 -d \
         -v $PWD/krb5.conf:/etc/kadmin/krb5.conf \
-		-v /var/log/kerberos:/var/log/kerberos \
-		-v krb5kdc:/etc/krb5kdc \
-		-v database:/var/lib/krb5kdc \
-		linimbus/kerberos-kadmin
+        -v /var/log/kerberos:/var/log/kerberos \
+        -v krb5kdc:/etc/krb5kdc \
+        -v database:/var/lib/krb5kdc \
+        linimbus/kerberos-kadmin
 
-docker run --name kdc -p 749:749 -p 464:464 -d \
-		-v $PWD/krb5.conf:/etc/kdc/krb5.conf \
-		-v /var/log/kerberos:/var/log/kerberos \
-		-v krb5kdc:/etc/krb5kdc \
-		-v database:/var/lib/krb5kdc \
-		linimbus/kerberos-kdc
+
+docker run --name kdc -p 88:88 -d \
+        -v $PWD/krb5.conf:/etc/kdc/krb5.conf \
+        -v /var/log/kerberos:/var/log/kerberos \
+        -v krb5kdc:/etc/krb5kdc \
+        -v database:/var/lib/krb5kdc \
+        linimbus/kerberos-kdc
+
 ```
 
 # Administer
