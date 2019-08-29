@@ -26,7 +26,7 @@ docker run --name kdc -p 88:88 -d \
 
 ```
 
-# Administer
+# Create Admin
 ```
 alias kadmin.example.org="docker exec -ti kadmin kadmin.local"
 kadmin.example.org -q "add_principal admin@EXAMPLE.ORG"
@@ -34,3 +34,22 @@ kadmin.example.org -q "add_principal admin/admin@EXAMPLE.ORG"
 ```
 N.B. kadm5.acl is configured so that all principals ending /admin have admin rights
 
+# Test
+## Login By Password
+`kadmin` or `kinit`
+
+## Login By Keytab
+`kinit -kt ./client.keytab client/admin`
+
+## User Manager
+```
+kadmin addprinc client/admin
+kadmin delprinc server/admin
+kadmin listprincs
+```
+
+## Make KeyTab
+```
+kadmin xst -k client.keytab client/admin
+kinit -kt ./client.keytab client/admin
+```
