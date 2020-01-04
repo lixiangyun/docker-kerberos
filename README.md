@@ -35,7 +35,7 @@ kadmin.example.org -q "add_principal root/admin@EXAMPLE.ORG"
 N.B. kadm5.acl is configured so that all principals ending /admin have admin rights
 
 # Test
-## Login By Password, if not found please install.(`apt install -y krb5-user`)
+## Login By Password, if not found please install.(`apt install -y krb5-user && cp krb5.conf /etc/krb5.conf`)
 `kadmin` or `kinit`
 
 ## Login By Keytab
